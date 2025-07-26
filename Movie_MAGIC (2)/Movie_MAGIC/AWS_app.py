@@ -12,7 +12,7 @@ app.secret_key = 'your-secret-key'
 AWS_REGION = 'us-east-1'
 USERS_TABLE = 'movie ticket_user'
 BOOKINGS_TABLE = 'movie ticket_booking'
-SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:604665149129:movie ticket_Topic'
+SNS_TOPIC_ARN = 'arn:aws:sns:us-east-1:495599749771:movieticket_topic'
 
 # Initialize AWS clients
 dynamodb = boto3.resource('dynamodb', region_name=AWS_REGION)
