@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Movie Magic – Book Your Show</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="home-page">
+  <div class="overlay">
+    <div class="container">
+      <h1>🎬 Welcome to Movie Magic</h1>
+      <p class="subtitle">Select a movie to book your tickets:</p>
+
+      <!-- Horizontal Scroll Row -->
+      <div class="movie-row horizontal-scroll">
+        {% for movie in movies %}
+          <div class="movie-card">
+            <img src="{{ url_for('static', filename=movie.image) }}" alt="{{ movie.title }} Poster">
+            <h3>{{ movie.title }}</h3>
+            <p class="price">₹{{ movie.price }}</p>
+            <a href="{{ url_for('booking', title=movie.title) }}" class="btn">🎟 Book Now</a>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Buttons -->
+      <div class="nav-buttons">
+        <a href="{{ url_for('dashboard') }}" class="btn">📋 View Dashboard</a>
+        <a href="{{ url_for('logout') }}" class="btn logout">🚪 Logout</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

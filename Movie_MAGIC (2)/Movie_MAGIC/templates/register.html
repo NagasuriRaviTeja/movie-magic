@@ -1,0 +1,22 @@
+<!-- templates/register.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register - Movie Magic</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="register-page">
+  <div class="overlay">
+    <div class="container">
+      <h2>🎟 Create Your Account</h2>
+      <form method="POST">
+        <input name="name" type="text" placeholder="Full Name" required><br>
+        <input name="email" type="email" placeholder="Email" required><br>
+        <input name="password" type="password" placeholder="Password" required><br>
+        <button type="submit" class="btn">Register</button>
+      </form>
+      <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+    </div>
+  </div>
+</body>
+</html>

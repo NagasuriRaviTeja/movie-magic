@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Seats - {{ movie.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="seating-page">
+  <div class="overlay">
+    <div class="container">
+      <h2>🎫 Select Your Seats for {{ movie.title }}</h2>
+      <form method="POST">
+        <div class="section-title">Premium Seats (₹300)</div>
+        <div id="premium-grid" class="seat-grid"></div>
+
+        <div class="section-title">Gold Seats (₹300)</div>
+        <div id="gold-grid" class="seat-grid"></div>
+
+        <input type="hidden" name="seats" id="selectedSeats">
+        <button type="submit" class="btn">Confirm Booking</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const selectedSeats = [];
+
+    function createSeats(gridId, startRow, rowCount, type) {
+      const grid = document.getElementById(gridId);
+      for (let row = startRow; row < startRow + rowCount; row++) {
+        const r = String.fromCharCode(row);
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'seat-row';
+
+        for (let col = 1; col <= 8; col++) {
+          const seat = document.createElement('button');
+          seat.type = 'button';
+          seat.className = `seat ${type}`;
+          seat.textContent = `${r}${col}`;
+          seat.onclick = function () {
+            seat.classList.toggle('selected');
+            const seatInfo = `${seat.textContent}:${type}`;
+            if (selectedSeats.includes(seatInfo)) {
+              selectedSeats.splice(selectedSeats.indexOf(seatInfo), 1);
+            } else {
+              selectedSeats.push(seatInfo);
+            }
+            document.getElementById('selectedSeats').value = selectedSeats.join(',');
+          };
+          rowDiv.appendChild(seat);
+        }
+        grid.appendChild(rowDiv);
+      }
+    }
+
+    // Premium: A-E (ASCII 65–69)
+    createSeats('premium-grid', 65, 5, 'premium');
+
+    // Gold: F-J (ASCII 70–74)
+    createSeats('gold-grid', 70, 5, 'gold');
+  </script>
+</body>
+</html>

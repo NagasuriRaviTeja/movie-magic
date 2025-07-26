@@ -1,0 +1,17 @@
+<!-- templates/booking.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Tickets - {{ movie.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="booking-page">
+  <div class="overlay">
+    <div class="container">
+      <h2>🎟 Booking for {{ movie.title }}</h2>
+      <p><strong>Price:</strong> ₹{{ movie.price }}</p>
+      <a href="{{ url_for('seating', title=movie.title) }}" class="btn">Select Seats</a>
+    </div>
+  </div>
+</body>
+</html>
